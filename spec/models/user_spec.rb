@@ -9,6 +9,4 @@ describe User do
 	it { should respond_to :username }
 	it { should respond_to :clips }
 
-	
-
 end

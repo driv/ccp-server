@@ -1,7 +1,7 @@
 FactoryGirl.define do
 	
-	factory :user do
-		username 'example'
+	factory :user do |user|
+		sequence(:username) { |n| "example_#{n}" }
 	end
 
 	factory :clip do
