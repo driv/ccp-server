@@ -12,8 +12,16 @@ class ClipsController < ApplicationController
 
 	def show
 		user = User.find(params[:user_id])
-		@clip = user.clips.find(params[:id])
-
+		clip_id = params[:id]
+		if clip_id == 'last' then
+			@clip = find_last_clip(user)
+		else
+			@clip = user.clips.find(clip_id)
+		end
 		render json: @clip
+	end
+
+	def find_last_clip(user)
+		user.clips.order('created_at DESC').first
 	end
 end
