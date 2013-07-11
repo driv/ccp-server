@@ -4,7 +4,7 @@ This is a first implementation of a simple wannabe "rest" api to allow copy past
 
 #Release 0.1
 - User CRUD
-- Clips creation, list and show. Show last clip
+- Clips creation, list and show. Show last clip submitted by the user
 - Authentication
 - Very basic linux and android clients
 
@@ -12,4 +12,4 @@ This is a first implementation of a simple wannabe "rest" api to allow copy past
 - Windows, OSX, web and who-knows-what-else clients.
 - Shareable clips
 - Third party authentication
-- Secure clips
+- Throwaway clips
