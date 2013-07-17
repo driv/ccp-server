@@ -2,7 +2,7 @@ require "spec_helper"
 
 describe ClipsController do
 
-    describe "clips" do
+    describe "routing" do
 
       it "routes to #index" do
         get(user_clips_path(1)).should route_to("clips#index", user_id: "1")

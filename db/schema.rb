@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130703223122) do
+ActiveRecord::Schema.define(version: 20130716235531) do
 
   create_table "clips", force: true do |t|
     t.text     "payload"
@@ -22,10 +22,20 @@ ActiveRecord::Schema.define(version: 20130703223122) do
 
   add_index "clips", ["user_id"], name: "index_clips_on_user_id"
 
+  create_table "sessions", force: true do |t|
+    t.string   "access_token"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "sessions", ["user_id"], name: "index_sessions_on_user_id"
+
   create_table "users", force: true do |t|
     t.string   "username"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "password"
   end
 
 end

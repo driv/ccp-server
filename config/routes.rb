@@ -4,6 +4,8 @@ CcpServer::Application.routes.draw do
   resources :users do
     resources :clips, except: [:new, :edit, :update]
   end
+
+  resources :sessions, only: [:create, :view, :delete]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
