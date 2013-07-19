@@ -19,7 +19,7 @@ describe SessionsController do
 					response.code.should == "201"
 				end
 
-				it 'should contain the accesstoken' do
+				it 'should contain the access token' do
 					parsed = JSON.parse(response.body)
 					parsed['access_token'].should_not be_empty
 				end

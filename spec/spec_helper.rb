@@ -88,4 +88,8 @@ RSpec.configure do |config|
   # the seed, which is printed after each run.
   #     --seed 1234
   config.order = "random"
+
+  config.before(:each) do
+    ApplicationController.any_instance.stub(:restrict_access).and_return(true)
+  end
 end

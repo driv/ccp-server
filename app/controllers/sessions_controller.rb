@@ -1,5 +1,7 @@
 class SessionsController < ApplicationController
 
+	skip_before_filter :restrict_access, :only => :create
+
 	def create
 		username = params[:username]
 		password = params[:password]
