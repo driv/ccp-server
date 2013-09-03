@@ -5,7 +5,7 @@ gem 'rails', '4.0.0'
 
 gem 'rails-api'
 
-# Use sqlite3 as the database for Active Record
+gem 'rack-cors'
 
 
 group :development, :test do
