@@ -16,6 +16,10 @@ group :development, :test do
 	gem 'guard-spork'
 end
 
+group :development do
+	gem 'populator'
+end
+
 group :test do
 	gem 'factory_girl_rails'
 end

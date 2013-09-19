@@ -10,7 +10,7 @@ describe "Authentication" do
   end
 
   describe "Passing token" do
-    it "should respond 200" do
+    it "should respond 200 " do
       get users_path, nil, authorization: %Q(Token token="#{token}")
       expect(response.status).to eq(200)
     end
@@ -24,10 +24,6 @@ describe "Authentication" do
 
   	it "should respond 401" do
   		response.status.should be 401
-  	end
-
-  	it "should have an empty response" do
-  		response.body.should be_empty
   	end
   end
 

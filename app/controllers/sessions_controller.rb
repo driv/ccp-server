@@ -16,7 +16,6 @@ class SessionsController < ApplicationController
 		end
 	end
 
-
 	protected
 
 	def generate_token
@@ -24,6 +23,10 @@ class SessionsController < ApplicationController
 		  random_token = SecureRandom.urlsafe_base64(nil, false)
 		  break random_token unless Session.where(access_token: random_token).exists?
 		end
+	end
+
+	def get_session_from_token(token)
+		Session.where(access_token: token).first
 	end
 
 end

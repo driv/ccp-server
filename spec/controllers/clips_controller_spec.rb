@@ -2,12 +2,16 @@ require 'spec_helper'
 
 describe ClipsController do
 	describe 'CRUD' do
-		describe 'create' do
-			let(:clip) { FactoryGirl.create(:clip) }
-
-			def create_clip(clip)
+		def create_clip(clip)
 			  post( :create , user_id: clip.user.id, clip: clip.attributes ) 
-			end
+		end
+
+		def get_last_clip(user)
+			get :show, user_id: user.id, id: 'last'
+		end
+
+		describe 'create' do
+			let(:clip) { FactoryGirl.build(:clip) }
 
 			it 'should respond with created(201) http message' do
 				create_clip(clip)
@@ -39,10 +43,6 @@ describe ClipsController do
 				let!(:clip_2) { FactoryGirl.create(:clip, user: user, created_at: 2.hour.ago) }
 
 
-				def get_last_clip(user)
-					get :show, user_id: user.id, id: 'last'
-				end
-
 				it { user.clips.count.should eq(2) }
 
 				it 'should return the newest clip' do
@@ -51,6 +51,16 @@ describe ClipsController do
 					parsed['id'].should eq(clip_1.id)
 				end
 
+			end
+		end
+
+		describe 'write and read' do
+			let(:clip) { FactoryGirl.build(:clip) }
+
+			it 'should return the payload sent' do
+				create_clip(clip)
+				get_last_clip(clip.user)
+				ActiveSupport::JSON.decode(response.body)['payload'].should eq clip.payload
 			end
 		end
 	end
