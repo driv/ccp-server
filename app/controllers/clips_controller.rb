@@ -1,9 +1,7 @@
 class ClipsController < ApplicationController
 	def create
-	  user = User.find(params[:user_id])
-	  p params[:clip]
+	  user = User.find(params[:user_id])	  
 	  @clip = user.clips.build(params[:clip])
-	  p @clip
 
 	  if @clip.save
 	  	render json: @clip, status: :created, location: user_clip_path(user,@clip)

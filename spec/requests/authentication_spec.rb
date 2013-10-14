@@ -6,13 +6,27 @@ describe "Authentication" do
   let!(:session) { FactoryGirl.create(:session, access_token: token)}
 
   before do
-    ApplicationController.any_instance.unstub(:restrict_access)
+    ApplicationController.any_instance.unstub(:authenticate)
   end
 
-  describe "Passing token" do
+  describe "Passing correct token" do
     it "should respond 200 " do
       get users_path, nil, authorization: %Q(Token token="#{token}")
       expect(response.status).to eq(200)
+    end
+
+    describe "accessing other user" do
+      it "should respond 401" do
+        get user_clip_path(session.user_id + 1, 'last'), nil, authorization: %Q(Token token="#{token}")
+        expect(response.status).to eq(401)
+      end
+    end
+
+    describe "accessing current user" do
+      it "should respond 200" do
+        get user_clip_path(session.user_id, 'last'), nil, authorization: %Q(Token token="#{token}")
+        expect(response.status).to eq(200)
+      end
     end
   end
 

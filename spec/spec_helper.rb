@@ -90,6 +90,6 @@ RSpec.configure do |config|
   config.order = "random"
 
   config.before(:each) do
-    ApplicationController.any_instance.stub(:restrict_access).and_return(true)
+    ApplicationController.any_instance.stub(:authenticate).and_return(true)
   end
 end
