@@ -50,4 +50,13 @@ describe "Authentication" do
       response.status.should be 201
     end
   end
+
+  describe "Creating new user" do
+    let(:user) { FactoryGirl.build(:user) }
+
+    it 'should skip authentication' do
+      post users_path, user: user.attributes
+      response.status.should be 201
+    end
+  end
 end

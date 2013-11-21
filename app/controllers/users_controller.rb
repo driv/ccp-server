@@ -1,4 +1,7 @@
 class UsersController < ApplicationController 
+
+  skip_before_filter :authenticate, :only => :create
+
   # GET /users
   # GET /users.json
   def index
@@ -20,6 +23,7 @@ class UsersController < ApplicationController
     if @user.save
       render json: @user, status: :created, location: @user
     else
+      p @user.errors
       render json: @user.errors, status: :unprocessable_entity
     end
   end
