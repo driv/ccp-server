@@ -7,12 +7,7 @@ gem 'rails-api'
 
 gem 'rack-cors'
 
-gem 'thin'
-
-git "git://github.com/habeel/faye-rails.git" do
-	gem 'faye-rails'
-end
-
+gem 'gcm'
 
 group :development, :test do
 	gem 'sqlite3'

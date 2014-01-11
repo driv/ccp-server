@@ -4,7 +4,9 @@ class ClipsController < ApplicationController
 	  @clip = user.clips.build(params[:clip])
 
 	  if @clip.save
-	  	render json: @clip, status: :created, location: user_clip_path(user,@clip)
+	  	location = user_clip_path(user,@clip)
+	  	notify(user, location)
+	  	render json: @clip, status: :created, location: location
 	  else
 	  	render json: @clip.errors, status: :unprocessable_entity
 	  end
@@ -21,7 +23,13 @@ class ClipsController < ApplicationController
 		render json: @clip
 	end
 
+	private
 	def find_last_clip(user)
 		user.clips.order('created_at DESC').first
+	end
+
+	def notify(user, payload)
+		notification = Notification.new(user)
+		notification.notify(payload)
 	end
 end

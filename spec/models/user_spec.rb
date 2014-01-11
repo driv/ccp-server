@@ -9,6 +9,7 @@ describe User do
 	it { should be_valid }
 	it { should respond_to :username }
 	it { should respond_to :clips }
+	it { should respond_to :subscriptions }
 
 	it "should not allow empty username" do
 		user = FactoryGirl.build(:user, username: "")

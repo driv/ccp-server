@@ -14,4 +14,10 @@ FactoryGirl.define do
 		access_token 'token_test'
 		user
 	end
+
+	factory :subscription do
+		parameters({ example_attr: "http://example.com/key=JKFLDJKL" })
+		user
+		kind "none"
+	end
 end

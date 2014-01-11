@@ -37,11 +37,9 @@ describe ClipsController do
 			end
 
 			describe 'get last clip' do
-
 				let(:user) { FactoryGirl.create(:user) }
 				let!(:clip_1) { FactoryGirl.create(:clip, user: user, created_at: 1.hour.ago) }
 				let!(:clip_2) { FactoryGirl.create(:clip, user: user, created_at: 2.hour.ago) }
-
 
 				it { user.clips.count.should eq(2) }
 
@@ -50,7 +48,6 @@ describe ClipsController do
 					parsed = JSON.parse(response.body)
 					parsed['id'].should eq(clip_1.id)
 				end
-
 			end
 		end
 

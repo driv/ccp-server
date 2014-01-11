@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130716235531) do
+ActiveRecord::Schema.define(version: 20131221185438) do
 
   create_table "clips", force: true do |t|
     t.text     "payload"
@@ -30,6 +30,16 @@ ActiveRecord::Schema.define(version: 20130716235531) do
   end
 
   add_index "sessions", ["user_id"], name: "index_sessions_on_user_id"
+
+  create_table "subscriptions", force: true do |t|
+    t.text     "parameters"
+    t.text     "kind"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "subscriptions", ["user_id"], name: "index_subscriptions_on_user_id"
 
   create_table "users", force: true do |t|
     t.string   "username"

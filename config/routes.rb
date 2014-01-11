@@ -3,6 +3,7 @@ CcpServer::Application.routes.draw do
 
   resources :users do
     resources :clips, except: [:new, :edit, :update]
+    resources :subscriptions
   end
 
   resources :sessions, only: [:create, :view, :delete]

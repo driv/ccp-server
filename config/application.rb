@@ -19,6 +19,9 @@ module CcpServer
         resource '*', :headers => :any, :methods => [:get, :post, :put, :delete, :options]
       end
     end
+
+    #root_path = Rails.root.to_s
+    #config.eager_load_paths += %W(#{root_path}/app/models/*) 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
