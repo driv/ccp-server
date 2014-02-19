@@ -1,13 +1,16 @@
 #Cloud Copy Paste Server
-This is a first implementation of a simple wannabe "rest" api to allow copy paste between devices.
-#Release 0.1
+This is a first implementation of a simple wannabe "rest" API that allows to copy-paste content between devices almost as easy as a local copy-paste
+
+#Plan for 1.0 release
 - User CRUD
 - Clips creation, list and show. Show last clip submitted by the user.
 - Authentication.
-- Very basic linux and android clients.
+- Basic web client: [ccp-web-client](https://github.com/driv/ccp-web-client).
+- Basic android clients.
+- Real time notifications (GCM, Faye).
 
 #Future releases
-- Windows, OSX, web and who-knows-what-else clients.
-- Shareable clips
-- Third party authentication
-- Throwaway clips
+- Ubuntu, Windows, OSX, web and who-knows-what-else clients.
+- Shareable clips.
+- Third party authentication.
+- Throwaway clips.
