@@ -18,7 +18,8 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
-    @user = User.new(params[:user])
+    #permitted_params
+    @user = User.new(permitted_params_create)
 
     if @user.save
       render json: @user, status: :created, location: @user
@@ -27,16 +28,24 @@ class UsersController < ApplicationController
     end
   end
 
+  def permitted_params_create
+    params.require(:user).permit([:username, :password])
+  end
+
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
     @user = User.find(params[:id])
 
-    if @user.update(params[:user])
+    if @user.update(permitted_params_update)
       head :no_content
     else
       render json: @user.errors, status: :unprocessable_entity
     end
+  end
+
+  def permitted_params_update
+    params.require(:user).permit([:password])
   end
 
   # DELETE /users/1

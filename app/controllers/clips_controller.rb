@@ -1,7 +1,7 @@
 class ClipsController < ApplicationController
 	def create
 	  user = User.find(params[:user_id])	  
-	  @clip = user.clips.build(params[:clip])
+	  @clip = user.clips.build(permitted_params)
 
 	  if @clip.save
 	  	location = user_clip_path(user,@clip)
@@ -10,6 +10,10 @@ class ClipsController < ApplicationController
 	  else
 	  	render json: @clip.errors, status: :unprocessable_entity
 	  end
+	end
+
+	def permitted_params
+		params.require(:clip).permit([:payload])
 	end
 
 	def show
