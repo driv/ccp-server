@@ -19,11 +19,11 @@ describe Subscription do
 	end
 
 	describe 'should not allow nil parameters' do
-		subject(:subscription) { 
+		subject(:subscription) {
 				subscription = FactoryGirl.build(:subscription)
 				subscription.parameters= nil
 				return subscription
-				 }
+		}
 
 		its (:parameters) { should be_nil }
 

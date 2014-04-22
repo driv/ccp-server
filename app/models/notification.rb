@@ -2,11 +2,11 @@ class Notification
 
 	def initialize(user)
 		@user = user
-	end 
+	end
 
 	def notify(payload)
 		subscriptions = @user.subscriptions.to_a
-		subscriptions.each { |subscription| 
+		subscriptions.each { |subscription|
 			notificator = Notificator.create(subscription)
 			notificator.notify(payload)
 		}

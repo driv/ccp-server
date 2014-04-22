@@ -9,9 +9,7 @@ Bundler.require(:default, Rails.env)
 module CcpServer
   class Application < Rails::Application
 
-
-    
-    config.secret_key_base = 'blipblapblup'
+    config.secret_key_base = 'fksdlfdkkdkd'
 
     config.middleware.use Rack::Cors do
       allow do
@@ -20,8 +18,16 @@ module CcpServer
       end
     end
 
+    config.middleware.delete Rack::Lock
+    config.middleware.use FayeRails::Middleware, mount: '/faye', :timeout => 25 do
+        map '/notifications/*' => RealtimeWebNotificationsController
+    end
+
+    config.i18n.enforce_available_locales = false
+    # or if one of your gem compete for pre-loading, use
+    I18n.config.enforce_available_locales = false
     #root_path = Rails.root.to_s
-    #config.eager_load_paths += %W(#{root_path}/app/models/*) 
+    #config.eager_load_paths += %W(#{root_path}/app/models/*)
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
