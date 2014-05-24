@@ -40,6 +40,12 @@ describe Subscription do
 
 			subscription_recovered.parameters.should_not be subscription.parameters
 		end
+
+		it 'should recover parameters as hash' do
+			subscription_recovered = Subscription.find(subscription.id)
+
+			subscription_recovered.parameters["url"].should eq parameters["url"]
+		end
 	end
 
 	
